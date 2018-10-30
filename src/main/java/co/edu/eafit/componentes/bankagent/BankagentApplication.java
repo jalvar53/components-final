@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BankagentApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BankagentApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BankagentApplication.class, args);
+    }
 }

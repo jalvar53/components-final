@@ -6,10 +6,9 @@ import java.util.Date;
 
 @Data
 public class Transaction {
-
-    private Account receiver;
-    private Account sender;
+    private int id;
+    private int receiverId;
+    private int senderId;
     private long amount;
     private Date timestamp;
-
 }
