@@ -68,12 +68,11 @@ public class CreditDao implements Dao<Credit> {
 
     @Override
     public void save(Credit credit) throws SQLException {
-        String query = "INSERT INTO credit (id, amount, state, userId) values(?, ?, ?, ?)";
+        String query = "INSERT INTO credit (amount, state, userId) values(?, ?, ?)";
         statement = this.connection.prepareStatement(query);
-        statement.setInt(1, credit.getId());
-        statement.setLong(2, credit.getAmount());
-        statement.setString(3, credit.getState());
-        statement.setInt(4, credit.getUserId());
+        statement.setLong(1, credit.getAmount());
+        statement.setString(2, credit.getState());
+        statement.setInt(3, credit.getUserId());
         statement.executeUpdate();
     }
 

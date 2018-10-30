@@ -68,13 +68,12 @@ public class TransactionDao implements Dao<Transaction> {
 
     @Override
     public void save(Transaction transaction) throws SQLException {
-        String query = "INSERT INTO transaction (id, receiverId, senderId, amount, transaction_date) values(?, ?, ?, ?,?)";
+        String query = "INSERT INTO transaction (receiverId, senderId, amount, transaction_date) values(?, ?, ?,?)";
         statement = this.connection.prepareStatement(query);
-        statement.setInt(1, transaction.getId());
-        statement.setInt(2, transaction.getReceiverId());
-        statement.setInt(3, transaction.getSenderId());
-        statement.setLong(4, transaction.getAmount());
-        statement.setDate(5, transaction.getTimestamp());
+        statement.setInt(1, transaction.getReceiverId());
+        statement.setInt(2, transaction.getSenderId());
+        statement.setLong(3, transaction.getAmount());
+        statement.setDate(4, transaction.getTimestamp());
         statement.executeUpdate();
     }
 
