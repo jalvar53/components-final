@@ -29,7 +29,7 @@ public class PaymentDao implements Dao<Payment> {
     @Override
     public Optional<Payment> get(int id) throws SQLException {
         Payment Payment = null;
-        String query = "SELECT id, payerId, amount, creditId, payment_date FROM Payment WHERE id = ?";
+        String query = "SELECT id, payerId, amount, payment_date FROM Payment WHERE id = ?";
         statement = this.connection.prepareStatement(query);
         statement.setInt(1, id);
         resultSet = statement.executeQuery();
@@ -38,7 +38,6 @@ public class PaymentDao implements Dao<Payment> {
                     resultSet.getInt("id"),
                     resultSet.getInt("payerId"),
                     resultSet.getLong("amount"),
-                    resultSet.getInt("creditId"),
                     resultSet.getDate("payment_date")
             );
         }
@@ -56,7 +55,6 @@ public class PaymentDao implements Dao<Payment> {
                     resultSet.getInt("id"),
                     resultSet.getInt("payerId"),
                     resultSet.getLong("amount"),
-                    resultSet.getInt("creditId"),
                     resultSet.getDate("payment_date")
             ));
         }
@@ -65,24 +63,22 @@ public class PaymentDao implements Dao<Payment> {
 
     @Override
     public void save(Payment Payment) throws SQLException {
-        String query = "INSERT INTO Payment (payerId, amount, creditId, payment_date) values(?, ?, ?, ?,?)";
+        String query = "INSERT INTO Payment (payerId, amount, payment_date) values(?, ?, ?)";
         statement = this.connection.prepareStatement(query);
-        statement.setInt(2, Payment.getPayerId());
-        statement.setLong(3, Payment.getAmount());
-        statement.setInt(4, Payment.getCreditId());
-        statement.setDate(5, Payment.getTimestamp());
+        statement.setInt(1, Payment.getPayerId());
+        statement.setLong(2, Payment.getAmount());
+        statement.setDate(3, Payment.getTimestamp());
         statement.executeUpdate();
     }
 
     @Override
     public void update(Payment Payment) throws SQLException {
-        String query = "UPDATE Payment SET payerId = ?, amount = ?, creditId = ?, payment_date = ? WHERE id = ?";
+        String query = "UPDATE Payment SET payerId = ?, amount = ?, payment_date = ? WHERE id = ?";
         statement = this.connection.prepareStatement(query);
         statement.setInt(1, Payment.getPayerId());
-        statement.setLong(3, Payment.getAmount());
-        statement.setInt(2, Payment.getCreditId());
-        statement.setDate(4, Payment.getTimestamp());
-        statement.setInt(5, Payment.getId());
+        statement.setLong(2, Payment.getAmount());
+        statement.setDate(3, Payment.getTimestamp());
+        statement.setInt(4, Payment.getId());
         statement.executeUpdate();
     }
 

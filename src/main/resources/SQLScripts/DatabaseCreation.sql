@@ -22,6 +22,14 @@ CREATE TABLE IF NOT EXISTS account (
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS payment (
+  id int(16) NOT NULL AUTO_INCREMENT,
+  payerId int(16) NOT NULL,
+  amount varchar(128) NOT NULL,
+  payment_date timestamp NOT NULL,
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS transaction (
 	id int(16) NOT NULL AUTO_INCREMENT,
 	receiverId int(16) NOT NULL,

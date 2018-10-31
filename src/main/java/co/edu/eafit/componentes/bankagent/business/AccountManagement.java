@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class AccountManagement {
+
     public static Account authenticateUser(String username, String password) {
         AccountDao dao = new AccountDao();
         try {
@@ -31,7 +32,7 @@ public class AccountManagement {
             e.printStackTrace();
         }
     }
-    public static void updateUserAccount(Account account, String firstName, String lastName, String editedPhoneNumber) {
+    public static Account updateUserAccount(Account account, String firstName, String lastName, String editedPhoneNumber) {
         AccountDao dao = new AccountDao();
 
         account.setFirstName(firstName);
@@ -43,5 +44,6 @@ public class AccountManagement {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return account;
     }
 }

@@ -2,9 +2,11 @@ package co.edu.eafit.componentes.bankagent.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
+@ToString
 public class Account {
     private int id;
     private String username;
