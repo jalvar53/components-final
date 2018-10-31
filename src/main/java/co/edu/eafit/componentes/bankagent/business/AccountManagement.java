@@ -21,6 +21,17 @@ public class AccountManagement {
         return null;
     }
 
+    public static Account createUser(String username, String password, String firstName, String lastName, String phoneNumber) {
+        AccountDao dao = new AccountDao();
+        Account account = new Account(0, username, password, firstName, lastName, phoneNumber, 0, 0);
+        try {
+            dao.save(account);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return account;
+    }
+
     public static void deleteUserAccount(int accountId){
         AccountDao dao = new AccountDao();
         try {
