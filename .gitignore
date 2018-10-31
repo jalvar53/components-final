@@ -3,3 +3,5 @@ target/
 *.iml
 VariamosConfiguration.backup.*
 VariamosModel.backup.*
+.floo
+.flooignore
