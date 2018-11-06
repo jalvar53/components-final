@@ -1,4 +1,4 @@
-package  main.java.co.edu.eafit.componentes.bankagent.Account;
+package Account;
 
 import java.sql.SQLException;
 import java.util.Optional;
@@ -23,6 +23,7 @@ public class AccountManagement {
         Account account = new Account(0, username, password, firstName, lastName, phoneNumber, 0, 0);
         try {
             dao.save(account);
+            account = dao.getWithLogin(username, password).get();
         } catch (SQLException e) {
             e.printStackTrace();
         }

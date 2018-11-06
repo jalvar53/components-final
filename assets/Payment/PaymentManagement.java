@@ -20,6 +20,7 @@ public class PaymentManagement {
 
         try {
             account.setDebt(Objects.requireNonNull(account).getDebt() - payingAmount);
+            account.setBalance(Objects.requireNonNull(account).getBalance() - payingAmount);
             accountDao.update(account);
             paymentDao.save(payment);
         } catch (SQLException e) {

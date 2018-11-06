@@ -18,6 +18,7 @@ public class CreditManagement {
 
         try {
             account.setDebt(Objects.requireNonNull(account).getDebt() + amount);
+            account.setBalance(Objects.requireNonNull(account).getBalance() + amount);
             accountDao.update(account);
             creditDao.save(credit);
         } catch (SQLException e) {
