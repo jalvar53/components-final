@@ -5,3 +5,4 @@ VariamosConfiguration.backup.*
 VariamosModel.backup.*
 .floo
 .flooignore
+out/
