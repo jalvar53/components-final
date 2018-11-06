@@ -1,11 +1,10 @@
 package CLI;
 
+/*B-creditManagementImport*/
+/*B-transactionManagementImport*/
+/*B-paymentManagementImport*/
 import Account.AccountManagement;
-import Credit.CreditManagement;
-import Payment.PaymentManagement;
-import Transaction.TransactionManagement;
 import Account.Account;
-import Transaction.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,9 +83,9 @@ public class Menus {
         System.out.println("Welcome, " + account.getFirstName() + " " + account.getLastName());
         System.out.println("Select option:");
         System.out.println("A) Account");
-        System.out.println("T) Transactions");
-        System.out.println("P) Payment");
-        System.out.println("C) Credits");
+        /*B-transactionOption*/
+        /*B-paymentOption*/
+        /*B-creditOption*/
         System.out.println("L) Logout");
         System.out.println("E) Exit");
         System.out.println();
@@ -97,18 +96,9 @@ public class Menus {
             case "account":
                 showAccountMenu();
                 break;
-            case "t":
-            case "transaction":
-                showTransactionMenu();
-                break;
-            case "p":
-            case "payment":
-                showPaymentsMenu();
-                break;
-            case "c":
-            case "credit":
-                showCreditsMenu();
-                break;
+            /*B-transactionOptionCase*/
+            /*B-paymentOptionCase*/
+            /*B-creditOptionCase*/
             case "l":
             case "logout":
                 showWelcomeMenu();
@@ -186,108 +176,9 @@ public class Menus {
         }
     }
 
-    private static void showTransactionMenu() {
-        Utils.clearScreen();
-        System.out.println("Transaction");
-        System.out.println("Select option:");
-        System.out.println("1) Make transaction");
-        System.out.println("2) List my transactions");
-        System.out.println("3) Back To Menu");
-        System.out.println();
-        System.out.print("Enter an option: ");
+    /*B-transactionMenu*/
 
-        int option = Integer.parseInt(reader.nextLine());
-        switch (option) {
-            case 1:
-                System.out.println("Bank account of the transaction receiver:");
-                int receiver = Integer.parseInt(reader.nextLine());
-                System.out.println("Amount to transfer:");
-                long amount = Long.parseLong(reader.nextLine());
-                try {
-                    TransactionManagement.doTransaction(account, receiver, amount);
-                    System.out.println("Transfer done successfully.");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                Utils.waitInput();
-                showMenu();
-                break;
-            case 2:
-                System.out.println("Your last transactions: ");
-                try {
-                    List<Transaction> transactionList = (ArrayList<Transaction>) TransactionManagement.getAllTransactions();
-                    transactionList.forEach((transaction) -> System.out.println(transaction.toString()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                Utils.waitInput();
-                showMenu();
-                break;
-            default:
-                showPaymentsMenu();
-        }
+    /*B-paymentMenu*/
 
-    }
-
-    private static void showPaymentsMenu() {
-        Utils.clearScreen();
-        System.out.println("Payments");
-        System.out.println("Select option:");
-        System.out.println("1) Make a payment");
-        System.out.println("2) Back To Menu");
-        System.out.println();
-        System.out.print("Enter an option: ");
-
-        int option = Integer.parseInt(reader.nextLine());
-        switch (option) {
-            case 1:
-                System.out.println("Amount to pay:");
-                int payingAmount = Integer.parseInt(reader.nextLine());
-                try {
-                    PaymentManagement.payDebt(account, payingAmount);
-                    System.out.println("Payment done");
-                } catch (Exception e) {
-                    System.out.println("Amount cannot be 0 or negative");
-                }
-                Utils.waitInput();
-                showPaymentsMenu();
-                break;
-            case 2:
-                showMenu();
-                break;
-            default:
-                showPaymentsMenu();
-        }
-    }
-
-    private static void showCreditsMenu() {
-        Utils.clearScreen();
-        System.out.println("Credits");
-        System.out.println("Select option:");
-        System.out.println("1) Ask for credit");
-        System.out.println("2) Back To Menu");
-        System.out.println();
-        System.out.print("Enter an option: ");
-
-        int option = Integer.parseInt(reader.nextLine());
-        switch (option) {
-            case 1:
-                System.out.println("Credit amount:");
-                int creditAmount = Integer.parseInt(reader.nextLine());
-                try {
-                    CreditManagement.askForCredit(account, creditAmount);
-                    System.out.println("Credit approved");
-                } catch (Exception e) {
-                    System.out.println("Amount cannot be 0 or negative");
-                }
-                Utils.waitInput();
-                showCreditsMenu();
-                break;
-            case 2:
-                showMenu();
-                break;
-            default:
-                showCreditsMenu();
-        }
-    }
+    /*B-creditMenu*/
 }
