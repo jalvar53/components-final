@@ -14,9 +14,9 @@ CREATE TABLE IF NOT EXISTS account (
 	PRIMARY KEY (id)
 );
 
--- B-paymentCreditTable
+/*B-createPaymentTable*/
 
--- B-createCreditTable
+/*B-createCreditTable*/
 
--- B-createTransactionTable
+/*B-createTransactionTable*/
 
